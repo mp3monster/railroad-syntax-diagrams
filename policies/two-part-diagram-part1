@@ -1,0 +1,60 @@
+Diagram(
+  NonTerminal('allow'),
+  Choice(1,
+    NonTerminal('any-user'),
+    Sequence(NonTerminal('group'), 
+      Choice (0, 
+       'group-name', 
+       Sequence (NonTerminal('id'), 'OCID')
+      )
+    )
+  ),
+  NonTerminal('to'),
+  Choice(0,
+      NonTerminal('manage'),
+      NonTerminal('use'),
+      NonTerminal('read'),
+      NonTerminal('inspect')),
+  Choice (0,
+      NonTerminal ('all-resources'),
+      Sequence(NonTerminal('resource'),
+       Choice(0,
+         OneOrMore('resource-name', 
+           NonTerminal(',')
+         ),
+         OneOrMore('resource-family-name', 
+           NonTerminal(',')))
+         )  
+  ),
+  NonTerminal('in'),
+  Choice(1,
+    NonTerminal('tenancy'),
+    Sequence(
+      NonTerminal('compartment'), 
+      Choice(0,
+        'compartment-name',
+        Sequence(NonTerminal('id'), 'OCID')
+      )
+    )
+  ),
+  Optional(
+    Sequence(
+      NonTerminal('where'),
+      Choice(0,
+        Sequence(Choice(0, NonTerminal('any'), NonTerminal('all')),
+        OneOrMore(
+          Sequence(
+           NonTerminal ('{'),
+          'variable',
+          Choice(0, 
+             NonTerminal('='), 
+             NonTerminal('!=')
+           ),
+          'value',
+          NonTerminal ('}')), ',')
+        ),
+       Sequence('variable',Choice(0, NonTerminal('='), NonTerminal('!=')),'value')
+     )
+   )
+  )
+)
