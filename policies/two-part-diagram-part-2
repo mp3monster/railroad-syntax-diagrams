@@ -1,0 +1,20 @@
+Diagram(
+    Sequence(
+      NonTerminal('where'),
+      Choice(0,
+        Sequence(Choice(0, NonTerminal('any'), NonTerminal('all')),
+        OneOrMore(
+          Sequence(
+           NonTerminal ('{'),
+          'variable',
+          Choice(0, 
+             NonTerminal('='), 
+             NonTerminal('!=')
+           ),
+          'value',
+          NonTerminal ('}')), ',')
+        ),
+       Sequence('variable',Choice(0, NonTerminal('='), NonTerminal('!=')),'value')
+     )
+   )
+)
