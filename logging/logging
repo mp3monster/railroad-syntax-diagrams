@@ -1,0 +1,58 @@
+Diagram(
+  Terminal('search'),
+  NonTerminal('Compartment OCID'),
+Stack(
+
+Group(
+Stack(
+  Optional(
+    Sequence(
+      Terminal ('/'),
+      Choice(0,
+        NonTerminal('Log Group Name'),
+        NonTerminal('Log Group OCID')
+      ),
+      Optional(
+        Sequence (
+          Terminal ('/'),
+          Choice(0,
+            NonTerminal('Log Object Name'),
+            NonTerminal('Log Object OCID')
+          )
+        )
+      )
+    )
+  ),
+  ZeroOrMore(
+   Sequence(Terminal(','),
+    NonTerminal('Compartment OCID'),
+    Optional(
+      Sequence(
+        Terminal ('/'),
+        Choice(0,
+          NonTerminal('Log Group Name'),
+          NonTerminal('Log Group OCID')
+        ),
+        Optional(
+          Sequence (
+            Terminal ('/'),
+            Choice(0,
+              NonTerminal('Log Object Name'),
+              NonTerminal('Log Object OCID')
+            )
+          )
+        )
+      )
+    )
+    )
+)), 'Search scope - one or more paths with a minimum Compartment scope'
+  ),
+Group(
+  Choice(0,
+    Sequence(Terminal ('|'), Terminal('select'), NonTerminal('entity'), Terminal ('name')),
+    Sequence(Terminal ('|'), Optional(Terminal('where')), NonTerminal('value'), Terminal('operator'), NonTerminal('value')),
+    Sequence(Terminal ('|'), Terminal('top'), NonTerminal('number'), Terminal('by'), NonTerminal('sort id')),
+    Skip()
+  ), 'Conditional')
+)
+)
