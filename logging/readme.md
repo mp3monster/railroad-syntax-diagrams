@@ -4,4 +4,4 @@ This provides a representation of the logging syntax documented at https://docs.
 ![](./image.svg?sanitize=true)
 
 
-<img src="image.svg"/>
+<img src="./image.svg"/>
