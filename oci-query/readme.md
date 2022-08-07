@@ -2,7 +2,7 @@ This provides the railroad diagram for the OCI SQL syntax:
 ```
 Diagram(
 Stack(
-Sequence(NonTerminal('query'),Terminal('<resourcetype>'), NonTerminal('resources')),
+Sequence(NonTerminal('query'),OneOrMore(Terminal('<resourcetype>'), ','), NonTerminal('resources')),
 Optional(Sequence (NonTerminal('where'), Group(OneOrMore(Sequence(Terminal('<fieldname>'),Choice (0, '=', '!=', '==', '!==', '=~', '>=', '>', '<=', '<'), Terminal('value')), Choice(0,'&&', '||')),'Expression'))),
 Optional (Sequence(NonTerminal('return'), Choice(0,'<fieldname>', 'allAdditionalFields'))),
 
