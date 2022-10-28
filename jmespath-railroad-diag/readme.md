@@ -1,4 +1,4 @@
-#JMESPath
+# JMESPath
 
 The code view of the Railroad syntax:
 
